@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Put,
 } from '@nestjs/common';
 import { AppService } from './app.service.js';
 
@@ -39,14 +40,12 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
-
-  // GET - Listar clases
   @Get('clases')
   listar(): Clase[] {
     return clases;
   }
 
-  // POST - Crear clase
+
   @Post('clases')
   crear(
     @Body()
@@ -68,7 +67,7 @@ export class AppController {
     return nueva;
   }
 
-  // DELETE - Eliminar clase
+
   @Delete('clases/:id')
   eliminar(@Param('id') id: string): Clase | string {
     const indice = clases.findIndex((c) => c.id === +id);
@@ -82,7 +81,7 @@ export class AppController {
     return eliminada[0];
   }
 
-  // PATCH - Editar clase
+
   @Patch('clases/:id')
   editar(
     @Param('id') id: string,
@@ -113,4 +112,29 @@ export class AppController {
 
     return clase;
   }
+
+  @Put('clases/:id')
+  editarCompleto(
+    @Param('id') id: string,
+    @Body()
+    cuerpo: {
+      nombre: string;
+      hora: string;
+      instructor: string;
+    },
+  ): Clase | string {
+
+    const clase = clases.find((c) => c.id === +id);
+
+    if (!clase) {
+      return 'Clase no encontrada';
+    }
+
+    clase.nombre = cuerpo.nombre;
+    clase.hora = cuerpo.hora;
+    clase.instructor = cuerpo.instructor;
+
+    return clase;
+  }
 }
+
