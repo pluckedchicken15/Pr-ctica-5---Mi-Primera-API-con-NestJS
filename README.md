@@ -1,12 +1,16 @@
 ¿qué generó el comando nest new?
 Genero el proyecto NestJs con todas las dependencias necesarias
+
 ¿qué hace el AppService que ya viene generado?
 Tiene un método que devuelve un hello world, en donde el controlador usa un método ya generado lo utiliza
+
 ¿por qué la ruta funciona sin declarar nada en app.module.ts?
 porque en app module ya esta registrado el controlador, por lo tanto las rutas que necesitemos solo las tenemos 
 que definir en el controlador 
+
 ¿qué pasaría si el cuerpo de la petición viniera vacío?
 depende de la peticion, POST crea una clase solamente con id, PUT y PATCH lanzan un error 404
+
 ¿en qué archivo vive hoy toda la lógica de la práctica?
 en appcontroller
 
